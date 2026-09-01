@@ -22,11 +22,40 @@ RSpec.describe Board do
       board = Board.new
       position = 36
       marker = "X"
-      
       result = board.update_board(position, marker)
-
       expect(result).to eq(true)
-    end    
+    end 
+
+    it "returns false when placing a marker already occupied by a marker" do
+      board = Board.new
+      position = 36
+      marker = "X"
+      board.update_board(position, marker)
+
+      result = board.update_board(position, marker)
+      expect(result).to eq(false)
+    end
+    
+    it "returns true when placing a marker on a vaild spot when the index below has a marker" do
+      board = Board.new
+      position = 36
+      marker = "X"
+      board.update_board(position, marker)
+
+      position = 29
+      marker = "X"
+      result = board.update_board(position, marker)
+      expect(result).to eq(true)
+    end
+
+    it "returns false when placing a marker on a spot when the index below doesn't have a marker" do
+      board = Board.new
+      position = 29
+      marker = "X"
+
+      result = board.update_board(position, marker)
+      expect(result).to eq(false)
+    end
   end
 
 end

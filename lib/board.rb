@@ -24,13 +24,18 @@ class Board
       row_index = zero_based / 7
       col_index = zero_based % 7
 
+      current_value = @board[row_index][col_index]
+      return false if current_value.is_a?(String)
+
+      if row_index <= 4
+        new_row = row_index + 1
+        bottom_value = @board[new_row][col_index]
+        return false if bottom_value.is_a?(Integer)
+      end
+      
       @board[row_index][col_index] = marker
       true    
   end
-
-
-
-
 
 #~~~~~~~~private methods below here ~~~~~~
 
