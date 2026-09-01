@@ -16,4 +16,17 @@ RSpec.describe Board do
       expect(actual_board[5][6]).to eq(42)
     end
   end
+
+  describe "#update_board" do  
+    it "returns true when placing a marker on a valid spot on the bottom row (36-42)" do
+      board = Board.new
+      position = 36
+      marker = "X"
+      
+      result = board.update_board(position, marker)
+
+      expect(result).to eq(true)
+    end    
+  end
+
 end

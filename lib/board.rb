@@ -15,9 +15,19 @@ class Board
       unless index == @board.length - 1
         puts "--------------------------------------------"
       end
-      
+  
     end
   end
+
+  def update_board(position, marker)
+      zero_based = position - 1
+      row_index = zero_based / 7
+      col_index = zero_based % 7
+
+      @board[row_index][col_index] = marker
+      true    
+  end
+
 
 
 
