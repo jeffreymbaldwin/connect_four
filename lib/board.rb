@@ -3,7 +3,21 @@ class Board
     create_board
   end
   
-
+  def show_board
+    @board.each_with_index do |row, index|
+      formatted_row = row.map { |element| 
+      if element.is_a?(Integer)
+        format("%02d", element)
+      else 
+        element * 2
+      end}
+      puts formatted_row.join("  |  ")
+      unless index == @board.length - 1
+        puts "--------------------------------------------"
+      end
+      
+    end
+  end
 
 
 

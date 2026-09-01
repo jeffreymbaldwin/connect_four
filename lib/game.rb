@@ -13,8 +13,12 @@ class Game
     @current_player = @player_one
   end
 
-  
+  def test
+    @board.show_board
+  end
 
-
+  def check
+    test
+  end
   
 end
