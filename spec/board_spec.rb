@@ -58,4 +58,86 @@ RSpec.describe Board do
     end
   end
 
+  describe "#winner"
+    it "returns true when the same marker occupies 4 spaces in a horizontal row" do
+      board = Board.new
+      marker = "X"
+
+      position = 36
+      board.update_board(position, marker)
+
+      position = 37
+      board.update_board(position, marker)
+
+      position = 38
+      board.update_board(position, marker)
+
+      position = 39
+      board.update_board(position, marker)
+
+      result = board.winner?(marker)
+
+      expect(result).to eq(true)
+        
+    end
+
+    it "returns true when the same marker occupies 4 spaces in a vertical row" do
+      board = Board.new
+      marker = "X"
+
+      position = 36
+      board.update_board(position, marker)
+
+      position = 29
+      board.update_board(position, marker)
+
+      position = 22
+      board.update_board(position, marker)
+
+      position = 15
+      board.update_board(position, marker)
+
+      result = board.winner?(marker)
+
+      expect(result).to eq(true)
+
+    end
+
+    it "returns true when the same marker occupies 4 spaces in a diagonal" do
+      board = Board.new
+      marker = "X"
+
+      position = 41
+      board.update_board(position, marker)
+
+      position = 40
+      board.update_board(position, marker)
+
+      position = 33
+      board.update_board(position, marker)
+
+      position = 39
+      board.update_board(position, marker)
+
+      position = 32
+      board.update_board(position, marker)
+
+      position = 25
+      board.update_board(position, marker)
+
+      position = 38
+      board.update_board(position, marker)
+
+      position = 31
+      board.update_board(position, marker)
+
+      position = 24
+      board.update_board(position, marker)
+      
+      position = 17
+      board.update_board(position, marker)
+
+      result = board.winner?(marker)
+      expect(result).to eq(true)
+    end
 end
