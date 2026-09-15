@@ -59,6 +59,24 @@ RSpec.describe Board do
   end
 
   describe "#winner"
+    it "returns false when there no spaces with the same marker 4 times in direction" do
+      board = Board.new
+      marker = "X"
+
+      position = 35
+      board.update_board(position, marker)
+
+      position = 14
+      board.update_board(position, marker)
+
+      position = 13
+      board.update_board(position, marker)
+
+      result = board.winner?(marker)
+      expect(result).to eq(false)
+
+
+    end
     it "returns true when the same marker occupies 4 spaces in a horizontal row" do
       board = Board.new
       marker = "X"
