@@ -58,7 +58,7 @@ RSpec.describe Board do
     end
   end
 
-  describe "#winner"
+  describe "#winner?" do
     it "returns false when there no spaces with the same marker 4 times in direction" do
       board = Board.new
       marker = "X"
@@ -158,4 +158,35 @@ RSpec.describe Board do
       result = board.winner?(marker)
       expect(result).to eq(true)
     end
+  end
+  describe "#draw?" do
+    it "returns false when the board has any number of integers (empty spaces) left" do
+      board = Board.new
+      marker = "X"
+
+      position = 07
+      board.update_board(position, marker)
+
+      result = board.draw?
+
+      expect(result).to eq(false)
+    end
+
+    it "returns true when the board does not have any integers (empty spaces) left" do
+      board = Board.new
+      marker = "X"
+      position = 42
+      until position < 1
+        board.update_board(position, marker)
+
+        position -= 1
+      end
+
+      result = board.draw?
+
+      expect(result).to eq(true)
+    end
+
+  end
+
 end

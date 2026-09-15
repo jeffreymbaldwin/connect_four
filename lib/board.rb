@@ -70,6 +70,13 @@ class Board
     false
   end
 
+  def draw? 
+    flat_board = @board.flatten
+
+    flat_board.none? do |element|
+      element.is_a?(Integer)
+    end
+  end
 
   private
 
