@@ -34,4 +34,38 @@ RSpec.describe Game do
     end
 
   end
+
+  describe "#turn" do 
+    let(:board) { instance_double(Board) }
+    let(:player_one) { instance_double(Player, marker: "X") }
+    let(:player_two) { instance_double(Player, marker: "O") }
+    subject(:game) {described_class.new(board, player_one, player_two) }
+    it "prompts for user input once then finishes when the board accepts the user's input" do 
+      allow(board).to receive(:update_board).and_return(true)
+      allow(board).to receive(:show_board)
+      expect(game).to receive(:ask_for_position).once.and_return(13)
+      game.turn
+    end
+
+    it "asks again when the board rejects the position" do
+      allow(board).to receive(:update_board).and_return(false, true)
+      allow(board).to receive(:show_board)
+      expect(game).to receive(:ask_for_position).twice.and_return(21,43)
+      game.turn
+    end
+  end
+
+  describe "#ask_for_position" do
+    subject(:game) { described_class.new }
+    it "returns an integer when the input is valid" do
+      allow(game).to receive(:gets).and_return("42\n")
+      result = game.ask_for_position
+      expect(result).to eq(42)
+    end
+    it "repromps for a new input when the input is invalid until the new input is valid" do
+      allow(game).to receive(:gets).and_return("6000\n", "41\n")
+      result = game.ask_for_position
+      expect(result).to eq(41)
+    end 
+  end
 end
