@@ -4,7 +4,7 @@ RSpec.describe Game do
   describe '#play' do
     let(:board) { instance_double(Board) }
     let(:player_one) { instance_double(Player, marker: "X") }
-    let(:player_two) { instance_double(Player, marker: "Y") }
+    let(:player_two) { instance_double(Player, marker: "O") }
     subject(:game) { described_class.new(board, player_one, player_two) }
 
     it "ends the loop when there is a winner" do
@@ -25,7 +25,7 @@ RSpec.describe Game do
       allow(board).to receive(:winner?).and_return(false,true)
       allow(board).to receive(:draw?).and_return(false)
       expect(game).to receive(:switch_player)
-      game.play  
+      game.play
     end
 
     it " changes current_player from player_one to player_two and player_two to player_one" do
@@ -35,12 +35,12 @@ RSpec.describe Game do
 
   end
 
-  describe "#turn" do 
+  describe "#turn" do
     let(:board) { instance_double(Board) }
     let(:player_one) { instance_double(Player, marker: "X") }
     let(:player_two) { instance_double(Player, marker: "O") }
-    subject(:game) {described_class.new(board, player_one, player_two) }
-    it "prompts for user input once then finishes when the board accepts the user's input" do 
+    subject(:game) { described_class.new(board, player_one, player_two) }
+    it "prompts for user input once then finishes when the board accepts the user's input" do
       allow(board).to receive(:update_board).and_return(true)
       allow(board).to receive(:show_board)
       expect(game).to receive(:ask_for_position).once.and_return(13)
@@ -66,6 +66,6 @@ RSpec.describe Game do
       allow(game).to receive(:gets).and_return("6000\n", "41\n")
       result = game.ask_for_position
       expect(result).to eq(41)
-    end 
+    end
   end
 end

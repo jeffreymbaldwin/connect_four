@@ -5,36 +5,36 @@ class Board
   
   def show_board
     @board.each_with_index do |row, index|
-      formatted_row = row.map { |element| 
-      if element.is_a?(Integer)
-        format("%02d", element)
-      else 
-        element * 2
-      end}
+      formatted_row = row.map do |element| 
+        if element.is_a?(Integer)
+          format("%02d", element)
+        else 
+          element * 2
+        end
+      end
       puts formatted_row.join("  |  ")
       unless index == @board.length - 1
         puts "--------------------------------------------"
       end
-  
     end
   end
 
   def update_board(position, marker)
-      zero_based = position - 1
-      row_index = zero_based / 7
-      col_index = zero_based % 7
+    zero_based = position - 1
+    row_index = zero_based / 7
+    col_index = zero_based % 7
 
-      current_value = @board[row_index][col_index]
-      return false if current_value.is_a?(String)
+    current_value = @board[row_index][col_index]
+    return false if current_value.is_a?(String)
 
-      if row_index <= 4
-        new_row = row_index + 1
-        bottom_value = @board[new_row][col_index]
-        return false if bottom_value.is_a?(Integer)
-      end
+    if row_index <= 4
+      new_row = row_index + 1
+      bottom_value = @board[new_row][col_index]
+      return false if bottom_value.is_a?(Integer)
+    end
 
-      @board[row_index][col_index] = marker
-      true    
+    @board[row_index][col_index] = marker
+    true    
   end
 
   def winner?(marker)
@@ -71,9 +71,7 @@ class Board
   end
 
   def draw? 
-    flat_board = @board.flatten
-
-    flat_board.none? do |element|
+    @board.flatten.none? do |element|
       element.is_a?(Integer)
     end
   end
