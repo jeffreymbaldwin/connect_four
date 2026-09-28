@@ -1,6 +1,6 @@
 # connect_four
 
-A command-line Connect-Four game built in Ruby to practice TDD principles.
+A command-line Connect-Four game built in Ruby to practice Test-Driven Development (TDD) principles.
 
 ## Description
 
@@ -8,11 +8,17 @@ A Connect-Four game played on the command line where two human players can play 
 
 ## Purpose
 
+To strengthen my understanding of TDD using Ruby and RSpec. Through this project, I practiced:
+- following the red -> green -> refactor cycle
+- Writing a failing test before implementing new behavior
+- Breaking larger problems into small, testable units
+- Writing only enough code to make the current test pass
+- Using tests as an active development and design tool, not just a final check for correctness.
 
 ## How to Run
 
 ```bash
-ruby game.rb
+ruby main.rb
 ```
 
 ## Usage
@@ -41,3 +47,4 @@ Marker Placed!
 36  |  37  |  38  |  39  |  40  |  XX  |  42
 
 ```
+
